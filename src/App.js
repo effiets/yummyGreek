@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState} from "react";
 
+import "./App.css";
+import HomePage from "./pages/HomePage";
+
+import Order from "./pages/Order";
+import DishPage from "./pages/DishPage";
+import Header from "./components/Header";
 function App() {
+  const [cart, setCart] = useState([]);
+
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage newCart={cart} updateCart={(item) => setCart(item)} />,
+    },
+    { path: "/:dishid", element: <DishPage newCart={cart} /> },
+    { path: "/order", element: <Order newCart={cart} /> },
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header  />
+      <RouterProvider router={router} />
+    </>
   );
 }
 

@@ -1,0 +1,9 @@
+.btn_cart{
+    background-color: #F8B547;
+    padding: 1rem;
+}
+
+.btn_cart:hover{
+    background-color:#f59b09;
+    
+}
